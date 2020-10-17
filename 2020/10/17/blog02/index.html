@@ -14,7 +14,7 @@
 
   
   
-  <meta name="description" content="vulnstack红日靶场(一)下"> 
+  <meta name="description" content="vulnstack红日靶场(一)下四、内网渗透继续尝试..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -165,13 +165,62 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 17, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>17</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1386</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <h1 id="vulnstack红日靶场-一-下"><a href="#vulnstack红日靶场-一-下" class="headerlink" title="vulnstack红日靶场(一)下"></a>vulnstack红日靶场(一)下</h1>
+        <h1 id="vulnstack红日靶场-一-下"><a href="#vulnstack红日靶场-一-下" class="headerlink" title="vulnstack红日靶场(一)下"></a>vulnstack红日靶场(一)下</h1><h4 id="四、内网渗透"><a href="#四、内网渗透" class="headerlink" title="四、内网渗透"></a>四、内网渗透</h4><p><strong>继续尝试命令行渗透：</strong></p>
+<p><strong>先利用msf生成exe文件蚁剑长传执行，反弹一个shell回来，kali做好监听</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017204942389.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389">**</p>
+<p><strong>提下权限看看：</strong></p>
+<p><strong><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017204953964.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204953964"></strong></p>
+<p><strong>接下来migrate迁移下进程，防止被发现。我选了同样权限的svchost进程。</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205019051.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205019051"></p>
+<p><strong>使用mimikatz读取目标密码，mimikatz_command -f sekurlsa::searchPasswords可以看到能读到明文（我更改了密码）：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205048377.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205048377"></p>
+<p><strong>也可以自己上传procdump，把lsass进程dump下来，本地mimikatz进行读取</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205114070.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205114070"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205125849.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205125849"></p>
+<h4 id="五、横向移动"><a href="#五、横向移动" class="headerlink" title="五、横向移动"></a>五、横向移动</h4><h4 id="5-1做一波信息收集："><a href="#5-1做一波信息收集：" class="headerlink" title="5.1做一波信息收集："></a><strong>5.1做一波信息收集：</strong></h4><p><strong>arp –a看一下内网机器，发现有两台</strong>：</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205323750.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205323750"></p>
+<p><strong>也可以这样：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205345508.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205345508"></p>
+<p><strong>有域，发现有其他网段</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205405355.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205405355"></p>
+<p><strong>其他两台机器名称</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205427200.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205427200"></p>
+<p><strong>查看目标机的网段信息：</strong></p>
+<p><strong>run get_local_subnets，这个也是看网段信息的命令</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205458497.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205458497"></p>
+<p><strong>Shell下很多命令都执行不成功。我们在试试其他方法</strong></p>
+<p><strong>查看安装的程序：run post/windows/gather/enum_applications发现有nmap以及python环境。还有火狐浏览器， msf自带也有搜集浏览器信息的模块，也可以上传lazagne进行信息收集，这里我试验了下不太稳定，没有跑出什么东西。 Win7本机实验是能跑出一些关键信息的。</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205615774.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205615774"></p>
+<p><strong>系统缺少的补丁: run post/windows/gather/enum_patches</strong></p>
+<p><strong>可以用来之前的提权</strong></p>
+<h4 id="5-2添加路由代理进内网"><a href="#5-2添加路由代理进内网" class="headerlink" title="5.2添加路由代理进内网"></a><strong>5.2添加路由代理进内网</strong></h4><p><strong>我们先做一下路由，然后利用proxychains通过代理，对目标内网机器进行探测。</strong></p>
+<p><strong>有两种方式：</strong></p>
+<p><strong>msf下:route add 192.168.52.0/24 1(1是session id)</strong></p>
+<p><strong>meterpreter下：run autoroute –s 192.168.52.0/24</strong></p>
+<p><strong>成功添加</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205828573.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205828573"></p>
+<p><strong>接下来配置代理，先用use auxiliary/server/socks5模块开启代理，再打开proxychains文件进行配置，如下：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205849835.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205849835"></p>
+<p><strong>然后配置/etc/proxychains.conf文件 最后加上sockes5 127.0.0.1 8899 保存</strong></p>
+<p><strong>在这里卡了一下，用nmap能扫到网段，但是端口都是关闭。于是想起了防火墙的原因，关闭防火墙仍不行。最后在proxychains nmap的时候发现还有一个proxychains3命令，成功探测到端口，这也是个坑吧</strong>。</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017205937796.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017205937796"></p>
+<p><strong>还有一点需要注意，必须加-sT 和-Pn参数，看了解释说proxychains不支持udp和icmp协议。试验了下去掉参数确实扫不到。</strong></p>
+<p><strong>我们继续，这里扫到了141机器开了445端口，并且是2003系统</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017210013572.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017210013572"></p>
+<p><strong>08067,17010都没有返回shell,看了其他师傅的博客，是用17010_command模块进行命令执行。试了一下出错！！what? 无意中查看hosts列表发现没有连接database,想必是这个原因了。试一下重置数据库重启msf。完美执行命令tasklist！</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017210054359.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017210054359"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017210101567.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017210101567"></p>
+<p><strong>然后就是添加用户，加管理组，开3389啦。Proxychains rdesktop 192.168.52.141直接登录拿下机器</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017210125590.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017210125590"></p>
+<p><strong>因为有域控的账号密码，直接用exploit/windows/smb/psexec模块，但试验了几次都不成功，那就如法炮制,拿下域控</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/image-20201017210156115.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017210156115"></p>
+
       </section>
       <section class="extra">
         
