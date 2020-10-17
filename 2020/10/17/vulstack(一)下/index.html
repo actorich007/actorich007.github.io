@@ -165,7 +165,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 17, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1371</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1372</span>
     </div>
   </div>
 </section>
@@ -204,7 +204,8 @@
 <p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/33.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"><br><strong>还有一点需要注意，必须加-sT 和-Pn参数，看了解释说proxychains不支持udp和icmp协议。试验了下去掉参数确实扫不到。</strong></p>
 <p><strong>我们继续，这里扫到了141机器开了445端口，并且是2003系统</strong></p>
 <p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/34.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"><br><strong>08067,17010都没有返回shell,看了其他师傅的博客，是用17010_command模块进行命令执行。试了一下出错！！what? 无意中查看hosts列表发现没有连接database,想必是这个原因了。试一下重置数据库重启msf。完美执行命令tasklist！</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/35.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"><br><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/36.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"><br><strong>然后就是添加用户，加管理组，开3389啦。Proxychains rdesktop 192.168.52.141直接登录拿下机器</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/35.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/36.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"><br><strong>然后就是添加用户，加管理组，开3389啦。Proxychains rdesktop 192.168.52.141直接登录拿下机器</strong></p>
 <p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/37.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"><br><strong>因为有域控的账号密码，直接用exploit/windows/smb/psexec模块，但试验了几次都不成功，那就如法炮制,拿下域控</strong></p>
 <p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/38.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 
