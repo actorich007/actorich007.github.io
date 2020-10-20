@@ -150,7 +150,7 @@
       <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
       
     </ul>
-    <div class="menu-copyright"></div>
+    <div class="menu-copyright"><p>Copyright© 2019 - 2020 | actor.AllRightsReserved</p></div>
   </div>
 </nav>
   <main id="main">
@@ -158,7 +158,7 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/theme/zhaoo/post2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/theme/zhaoo/wenzhang/6131.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">vulnstack红日靶场(一)下</h1>
     <div class="head-info">
@@ -195,8 +195,8 @@
 <p><strong>可以用来之前的提权</strong></p>
 <h4 id="5-2添加路由代理进内网"><a href="#5-2添加路由代理进内网" class="headerlink" title="5.2添加路由代理进内网"></a><strong>5.2添加路由代理进内网</strong></h4><p><strong>我们先做一下路由，然后利用proxychains通过代理，对目标内网机器进行探测。</strong></p>
 <p><strong>有两种方式：</strong></p>
-<p><strong>msf下:route add 192.168.52.0/24 1(1是session id)</strong></p>
-<p><strong>meterpreter下：run autoroute –s 192.168.52.0/24</strong></p>
+<p><strong>msf下:</strong><code>route add 192.168.52.0/24 1</code><strong>(1是session id)</strong></p>
+<p><strong>meterpreter下：</strong><code>run autoroute –s 192.168.52.0/24</code></p>
 <p><strong>成功添加</strong></p>
 <p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/31.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"><br><strong>接下来配置代理，先用use auxiliary/server/socks5模块开启代理，再打开proxychains文件进行配置，如下：</strong></p>
 <p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/32.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"><br><strong>然后配置/etc/proxychains.conf文件 最后加上sockes5 127.0.0.1 8899 保存</strong></p>
@@ -211,15 +211,6 @@
 
       </section>
       <section class="extra">
-        
-        <ul class="copyright">
-  
-  <li><strong>本文作者：</strong>John Doe</li>
-  <li><strong>本文链接：</strong><a href="http://www.actor360.xyz/2020/10/17/vulstack(%E4%B8%80)%E4%B8%8B/index.html">http://www.actor360.xyz/2020/10/17/vulstack(%E4%B8%80)%E4%B8%8B/index.html</a></li>
-  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
-      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
-  
-</ul>
         
         
         
@@ -249,7 +240,7 @@
   <div class="footer-social">
     
   </div>
-  <div class="footer-copyright"></div>
+  <div class="footer-copyright"><p>Copyright© 2019 - 2020 | actor.AllRightsReserved</p></div>
 </footer>
   
       <div class="fab fab-plus">
@@ -264,7 +255,7 @@
     <i class="iconfont iconcaret-up"></i>
   </div>
   
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.2,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacityDefault":0.2,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
