@@ -7,18 +7,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>docker常用命令 - Hexo</title>
+  <title>hash传递学习 - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
-  <meta name="description" content="docker常用命令
-
-
-0.搜索镜像
-docker ..."> 
+  <meta name="description" content="hash传递的学习win server2012之后默认..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -110,7 +106,7 @@ docker ...">
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">docker常用命令</div>
+  <div class="center">hash传递学习</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -162,95 +158,47 @@ docker ...">
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/theme/zhaoo/wenzhang/docker.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/theme/zhaoo/wenzhang/hash.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">docker常用命令</h1>
+    <h1 class="head-title">hash传递学习</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 22, 2020</span
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 28, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1235</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1169</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <h1 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a><u>docker常用命令</u></h1><table>
-<thead>
-<tr>
-<th>0.搜索镜像</th>
-<th>docker search httpd（在仓库中搜索httpd相关镜像）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1.docker一键安装</td>
-<td>curl -fsSL <a target="_blank" rel="noopener" href="https://get.docker.com/">https://get.docker.com</a> | bash -s docker  –mirror Aliyun</td>
-</tr>
-<tr>
-<td>2.docker启动</td>
-<td>systemctl  start docker</td>
-</tr>
-<tr>
-<td></td>
-<td>service docker  start</td>
-</tr>
-<tr>
-<td>3.开机自动启动docker</td>
-<td>systemctl enable  docker #</td>
-</tr>
-<tr>
-<td>4.创建开启容器</td>
-<td>docker run -d -p 5000:5000 –name 容器自定义名称 httpd /bin/bash（外端口：内端口，有时加/bin/bash会无法开启容器。）</td>
-</tr>
-<tr>
-<td>5.列镜像</td>
-<td>docker  images</td>
-</tr>
-<tr>
-<td>6.进入容器镜像</td>
-<td>docker exec -t -i 容器id /bin/bash</td>
-</tr>
-<tr>
-<td>7.删除镜像</td>
-<td>docker  rmi httpd</td>
-</tr>
-<tr>
-<td>8.删除容器</td>
-<td>docker rm 容器id</td>
-</tr>
-<tr>
-<td>9.列出全部容器</td>
-<td>docker ps -a(看stau状态)</td>
-</tr>
-<tr>
-<td>10.后台运行compose配置环境安装和删除</td>
-<td>docker-compose up  -d  docker-compose  down -v(删除搭建的容器)</td>
-</tr>
-<tr>
-<td>11.停止容器</td>
-<td>docker stop 容器id</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h4 id="docker内安装vim"><a href="#docker内安装vim" class="headerlink" title="docker内安装vim"></a>docker内安装vim</h4><p>$ mv /etc/apt/sources.list /etc/apt/sources.list.bak &amp;&amp; \</p>
-<p>  echo “deb <a target="_blank" rel="noopener" href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> jessie main non-free contrib” &gt;/etc/apt/sources.list &amp;&amp; \</p>
-<p>  echo “deb <a target="_blank" rel="noopener" href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> jessie-proposed-updates main non-free contrib” &gt;&gt;/etc/apt/sources.list &amp;&amp; \</p>
-<p>  echo “deb-src <a target="_blank" rel="noopener" href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> jessie main non-free contrib” &gt;&gt;/etc/apt/sources.list &amp;&amp; \</p>
-<p>  echo “deb-src <a target="_blank" rel="noopener" href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a> jessie-proposed-updates main non-free contrib” &gt;&gt;/etc/apt/sources.list</p>
-<p>更新安装vi</p>
-<p>$ apt-get update</p>
-<p>$ apt-get install vim-tiny</p>
-<h4 id="附上网图一张："><a href="#附上网图一张：" class="headerlink" title="附上网图一张："></a>附上网图一张：</h4><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/docker.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+        <h1 id="hash传递的学习"><a href="#hash传递的学习" class="headerlink" title="hash传递的学习"></a>hash传递的学习</h1><h4 id="win-server2012之后默认抓取的是加密后的hash值，虽然没有直接拿到明文，但利用hash传递通过认证。这里win对认证方式进行学习总结："><a href="#win-server2012之后默认抓取的是加密后的hash值，虽然没有直接拿到明文，但利用hash传递通过认证。这里win对认证方式进行学习总结：" class="headerlink" title="win server2012之后默认抓取的是加密后的hash值，虽然没有直接拿到明文，但利用hash传递通过认证。这里win对认证方式进行学习总结："></a>win server2012之后默认抓取的是加密后的hash值，虽然没有直接拿到明文，但利用hash传递通过认证。这里win对认证方式进行学习总结：</h4><h3 id="1-认证分为ntlm本地认证和ntlm域认证："><a href="#1-认证分为ntlm本地认证和ntlm域认证：" class="headerlink" title="1.认证分为ntlm本地认证和ntlm域认证："></a>1.认证分为ntlm本地认证和ntlm域认证：</h3><p><strong>本机ntlm认证：用户使用服务器本地账户的凭据。密码数据库储存在本地。</strong></p>
+<p><strong>域认证：在域环境中，用户使用域账户进行登陆，密码储存在域控当中。</strong></p>
+<h3 id="2-登陆认证过程："><a href="#2-登陆认证过程：" class="headerlink" title="2.登陆认证过程："></a>2.登陆认证过程：</h3><h4 id="2-1-共同部分："><a href="#2-1-共同部分：" class="headerlink" title="2.1 共同部分："></a>2.1 共同部分：</h4><p><strong>1.用户使用密码进行登陆，告诉服务器我要登陆。</strong></p>
+<p><strong>2.服务器返回客户端一个随机值成为challenge。</strong></p>
+<p><strong>3.客户端使用密码的hash值作为密钥，加密随机值,成为response返回给服务器。</strong></p>
+<h4 id="接下来就是两种认证方式："><a href="#接下来就是两种认证方式：" class="headerlink" title="接下来就是两种认证方式："></a><strong>接下来就是两种认证方式：</strong></h4><p><strong>如果是本地用户使用ntlm认证，域账户由于密码在域控，所以服务器要和域控进行认证</strong></p>
+<h4 id="2-2-ntlm本地认证："><a href="#2-2-ntlm本地认证：" class="headerlink" title="2.2 ntlm本地认证："></a>2.2 ntlm本地认证：</h4><p><strong>本地数据库名称是SAM，服务器找到用户名对应的储存密码hash加密随机值，通过比对，如和客户端发来的response一致，则通过认证。hash抓取见文末。</strong></p>
+<h4 id="2-3-ntlm域认证："><a href="#2-3-ntlm域认证：" class="headerlink" title="2.3 ntlm域认证："></a>2.3 ntlm域认证：</h4><p><strong>域用户的密码hash储存在域控中ntds.dit文件。 服务器将用户的response,用户名，以及challenge,发给域控，域控通过ntds.dit储存的账户hash加密challenge和response进行比对，如相同则通过认证。然后将结果返回服务器。</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/ntlm.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h3 id="3-hash的抓取和传递利用"><a href="#3-hash的抓取和传递利用" class="headerlink" title="3.hash的抓取和传递利用"></a>3.hash的抓取和传递利用</h3><h4 id="3-1抓取hash"><a href="#3-1抓取hash" class="headerlink" title="3.1抓取hash"></a>3.1抓取hash</h4><p>​    <strong>本地抓取hash方式有很多，拿到shell权限后,msfl load mimikatz，上传procdump读取lsass进程等。原理是：</strong></p>
+<p>​    <strong>sam文件储存的用户hash,通过备份SAM和SYSTEM数据库到本地，然后利用mimikatz等工具提取用户和hash(防止上传至目标        机被杀，当然免杀mimikatz就可以在目标直接读取了)</strong></p>
+<h5 id="离线导出sam和system文件抓取密码："><a href="#离线导出sam和system文件抓取密码：" class="headerlink" title="离线导出sam和system文件抓取密码："></a>离线导出sam和system文件抓取密码：</h5><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs maxima">reg <span class="hljs-built_in">save</span> hklm\sam sam.hive<br>reg <span class="hljs-built_in">save</span> hklm\<span class="hljs-built_in">system</span> <span class="hljs-built_in">system</span>.hive<br></code></pre></td></tr></table></figure>
+
+<h5 id="mimikatz读取hash"><a href="#mimikatz读取hash" class="headerlink" title="mimikatz读取hash"></a>mimikatz读取hash</h5><p><code>lsadump::sam /sam:sam.hive /system:system.hive</code></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/ntlm2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h4 id="3-2-hash传递登陆"><a href="#3-2-hash传递登陆" class="headerlink" title="3.2 hash传递登陆"></a>3.2 hash传递登陆</h4><p><strong>实验用到的是mimikatz的hash传递。通过以下命令win7和win2003执行成功，弹出cmd窗口，利用ipc管道查看c盘目录</strong>,</p>
+<p><strong>命令：<code>sekurlsa::pth /user:用户名 /domain:ip地址 /ntlm:用户hash</code></strong></p>
+<p><code>dir \\ip地址\c$</code></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/ntlm3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><strong>另一台win7没有执行成功，可能是做了策略之类的，这个是工作组hash传递，域hash如果拿到kgbrt账号的hash可以利用mimikatz等工具伪造黄金票据等，后续学习更新。</strong></p>
+
       </section>
       <section class="extra">
         
         <ul class="copyright">
   
   <li><strong>本文作者：</strong>actorich</li>
-  <li><strong>本文链接：</strong><a href="http://www.actor360.xyz/2020/10/22/docker/index.html">http://www.actor360.xyz/2020/10/22/docker/index.html</a></li>
+  <li><strong>本文链接：</strong><a href="http://www.actor360.xyz/2020/10/28/hash%E4%BC%A0%E9%80%92%E5%AD%A6%E4%B9%A0/index.html">http://www.actor360.xyz/2020/10/28/hash%E4%BC%A0%E9%80%92%E5%AD%A6%E4%B9%A0/index.html</a></li>
   <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
       rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
   
@@ -261,10 +209,8 @@ docker ...">
         
 <nav class="nav">
   
-    <a href="/2020/10/28/hash%E4%BC%A0%E9%80%92%E5%AD%A6%E4%B9%A0/"><i class="iconfont iconleft"></i>hash传递学习</a>
   
-  
-    <a href="/2020/10/17/vulstack(%E4%B8%80)%E4%B8%8B/">vulnstack红日靶场(一)下<i class="iconfont iconright"></i></a>
+    <a href="/2020/10/22/docker/">docker常用命令<i class="iconfont iconright"></i></a>
   
 </nav>
 
