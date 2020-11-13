@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vulnstack红日靶场（二）上 - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="ATT&amp;amp;CK红队实战（二）有小姐姐关注我的笔记..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: '',
+        wechat: ''
+      },
+      motto: {
+        api: '',
+        default: '斑驳夜，清风抚，竹影婆娑，喃喃思语望'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">vulnstack红日靶场（二）上</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Copyright© 2019 - 2020 | actor.AllRightsReserved</p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/theme/zhaoo/wenzhang/hongri2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">vulnstack红日靶场（二）上</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 12, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1663</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="ATT-amp-CK红队实战（二）"><a href="#ATT-amp-CK红队实战（二）" class="headerlink" title="ATT&amp;CK红队实战（二）"></a>ATT&amp;CK红队实战（二）</h1><h4 id="有小姐姐关注我的笔记，在此表示感谢-今天继续更新vulnstack红队靶场第二季，也是作为对自己学习过程的一个记录总结。"><a href="#有小姐姐关注我的笔记，在此表示感谢-今天继续更新vulnstack红队靶场第二季，也是作为对自己学习过程的一个记录总结。" class="headerlink" title="有小姐姐关注我的笔记，在此表示感谢~今天继续更新vulnstack红队靶场第二季，也是作为对自己学习过程的一个记录总结。"></a>有小姐姐关注我的笔记，在此表示感谢~今天继续更新vulnstack红队靶场第二季，也是作为对自己学习过程的一个记录总结。</h4><h1 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h1><h4 id="1-1-用到的靶机及其网络关系如下："><a href="#1-1-用到的靶机及其网络关系如下：" class="headerlink" title="1.1 用到的靶机及其网络关系如下："></a>1.1 用到的靶机及其网络关系如下：</h4><p><strong>web服务器双网卡：</strong></p>
+<p>​    <strong>内网地址：10.10.10.180</strong></p>
+<p>​    <strong>外网地址：192.168.1.11</strong></p>
+<p><strong>pc双网卡：</strong></p>
+<p>​    <strong>内网地址：10.10.10.201</strong></p>
+<p>​    <strong>外网地址：192.168.1.9</strong></p>
+<p><strong>dc域控地址：10.10.10.1</strong></p>
+<p><strong>kali本地 攻击机：192.168.1.10</strong></p>
+<p><strong>附官网拓扑图一张</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/00.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>web服务器上以管理员开启weblogic即可开启服务：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<h4 id="1-2-信息收集："><a href="#1-2-信息收集：" class="headerlink" title="1.2 信息收集："></a>1.2 信息收集：</h4><p>​        <strong>首先对目标进行信息收集，先用nmap扫描一下web机器的端口和服务：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">nmap -sV <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.11</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/03.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>可以看到有3389，445，7001等服务。7001是weblogic的端口，我们先看下是否存在已知漏洞：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/04.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>用到的工具是github的weblogic.py扫描脚本，发现存在默认后台，ssrf漏洞，CVE-2019-2725，CVE-2017-3506漏洞。这里可以打开后台进行弱口令爆破尝试登陆，也可以直接尝试利用漏洞工具getshell。</strong></p>
+<h1 id="二、漏洞利用"><a href="#二、漏洞利用" class="headerlink" title="二、漏洞利用"></a>二、漏洞利用</h1><h4 id="2-1-暴力破解："><a href="#2-1-暴力破解：" class="headerlink" title="2.1 暴力破解："></a><strong>2.1 暴力破解：</strong></h4><p><strong>先找到后台页面爆破下，直接192.168.1.11:7001/console就会直接跳转到后台：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/05.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/06.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>爆破常用密码登陆失败，没有发现弱密码</strong>。</p>
+<h4 id="2-2-weblogic反序列化漏洞利用"><a href="#2-2-weblogic反序列化漏洞利用" class="headerlink" title="2.2  weblogic反序列化漏洞利用"></a>2.2  weblogic反序列化漏洞利用</h4><p><strong>试一下CVE-2019-2725，漏洞的本质是java反序列化漏洞，无意外漏洞利用成功，可以看到目录权限等信息。</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/07.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/08.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>由于权限是administrator,我们上传一下后门，以便获取更大权限。关于weblogic上传的路径，参考这篇<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sstfy/p/10350915.html%E3%80%82">https://www.cnblogs.com/sstfy/p/10350915.html。</a></strong></p>
+<p><strong>先选用第一个路径C:\Oracle\Middleware\wlserver_10.3\server\lib\consoleapp\webapp\framework\skins</strong><br><strong>\wlsconsole\images\shell.jsp</strong></p>
+<p><strong>在目标文件目录看到成功上传冰蝎后门文件：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/09.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>但是无法连接，应该是目录权限问题。</strong></p>
+<p><strong>试一下第二个路径：C:\Oracle\Middleware\user_projects\domains\base_domain\servers\AdminServer</strong><br><strong>\tmp_WL_internal\uddiexplorer\5f6ebw\war\shell.jsp下,冰蝎成功连接，获得webshell</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/10.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<h1 id="三、提权"><a href="#三、提权" class="headerlink" title="三、提权"></a>三、提权</h1><h4 id="3-1-接下来就是扩权的问题，有两个思路："><a href="#3-1-接下来就是扩权的问题，有两个思路：" class="headerlink" title="3.1 接下来就是扩权的问题，有两个思路："></a><strong>3.1 接下来就是扩权的问题，有两个思路：</strong></h4><p>​    <strong>①.可以利用冰蝎反弹shell给msf，在msf上提权。</strong></p>
+<p>​    <strong>②.上传cs后门或者msf后门文件：</strong></p>
+<p><strong>这次用第二种cs生成木马上传至目标：</strong></p>
+<p><strong>测试发现由于上面有360杀毒，cs木马执行时被拦截。</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/11.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>这怎么能行？肝他。。笨拙的做了一个python免杀马，之前做过测试免杀还行。上传执行反弹失败。。。这里猜测可能是权限的问题。为了不影响大局就手动执行了。看到成功反弹到cs，也没有报毒。但是mssql用户权限比较低，查看hash需要管理员权限</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/13.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<h4 id="3-2-用自带的ms-14-058提权下："><a href="#3-2-用自带的ms-14-058提权下：" class="headerlink" title="3.2 用自带的ms-14-058提权下："></a><strong>3.2 用自带的ms-14-058提权下：</strong></h4><p><strong>成功弹回system权限的shell，接下来就好办多了。</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/14.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>有了权限我们添加个用户看看呐~密码复杂一些,简单的可能不给通过</strong>。</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/15.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>不出意外，被可恶的360拦截了，那就没办法了吗？no no no</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/16.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>这里用到一个argue参数污染，话不多说看图:</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/17.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>先用argue net1 xxxxxxx污染net1参数，在execute执行语句。无报毒成功绕过杀软，添加test用户并加入管理员组。</strong></p>
+<p><strong>第一步信息收集看到是开了3389的，远程登陆试试吧~</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/18.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>成功拿到web服务器，接下来就是内网信息收集进行横向移动，最终拿下域控服务器，未完待续……</strong></p>
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>actorich</li>
+  <li><strong>本文链接：</strong><a href="http://www.actor360.xyz/2020/11/12/vulstack(%E4%BA%8C)%E4%B8%8A/index.html">http://www.actor360.xyz/2020/11/12/vulstack(%E4%BA%8C)%E4%B8%8A/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+        
+<nav class="nav">
+  
+  
+    <a href="/2020/10/28/hash%E4%BC%A0%E9%80%92%E5%AD%A6%E4%B9%A0/">hash传递学习<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+	<!--页面点击小红心-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/actorich007/pic@main/js/love.js"></script>
+	<!--背景点线粒子-->
+	<script type="text/javascript" color="105,105,105" opacity='0.7' zIndex="-2" count="30" src="https://cdn.jsdelivr.net/gh/actorich007/pic@main/js/canvas-nest.min.js"></script>
+  </div>
+  <div class="footer-copyright"><p>Copyright© 2019 - 2020 | actor.AllRightsReserved</p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacityDefault":0.2,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
