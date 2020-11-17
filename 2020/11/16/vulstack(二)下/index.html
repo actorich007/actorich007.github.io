@@ -172,38 +172,38 @@
     <section class="main">
       <section class="content">
         <h1 id="四、内网渗透"><a href="#四、内网渗透" class="headerlink" title="四、内网渗透"></a>四、内网渗透</h1><h4 id="4-1-信息收集"><a href="#4-1-信息收集" class="headerlink" title="4.1 信息收集"></a>4.1 信息收集</h4><p><strong>从systeminfo信息里可以看到是有域环境的，只打了3个补丁，所以刚刚直接提取成功。有内外网，内网ip:10.10.10.80</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/19.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/19.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>net time /domain 查看域控时间，得知域控主机名：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/20.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/20.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>dns一般在域控上，查看dns地址初步确认域控ip为10.10.10.10</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/21.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/21.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>列举下域用户和机器信息：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/22.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/27.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/22.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/27.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>列举域管理员和域控机器：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/23.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/23.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>通过hashdump列出机器内的用户hash，利用cs自带的mimikatz中logonpassword模块进行破解，最终得到相关域用户的hash明文：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/24.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/25.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/24.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/25.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>在cmd5直接破解也可以直接看到明文：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/26.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/26.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <h1 id="五、横向移动"><a href="#五、横向移动" class="headerlink" title="五、横向移动"></a>五、横向移动</h1><h4 id="5-1-psexec利用域管令牌攻击："><a href="#5-1-psexec利用域管令牌攻击：" class="headerlink" title="5.1 psexec利用域管令牌攻击："></a>5.1 psexec利用域管令牌攻击：</h4><p><strong>有了其他域账号的hash，就可以尝试hash传递。而且还有域管账号de1ay\administrator ，这里用经典工具psexec进行令牌攻击：</strong></p>
 <p><strong>psexec类似于telnet,建立连接之后会安装一个“psexesvc”的服务，退出之后自动删除。前提是目标开启admin$。</strong></p>
 <p><strong>直接用de1ay\de1ay普通域用户登陆域控也可直接用域管令牌de1ay\administrator：（这里需使用smb监听）</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/28.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/28.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>可以看到成功返回了system权限域控的shell。当然，如果web机器中没有其他账号token，可以尝试利用系统漏洞ms17-010、弱口令、扫描内网服务，应用漏洞进行拿权限等。</strong></p>
 <p><strong>同样另一台PC机器10.10.10.201直接用域管账号token即可返回shell。</strong></p>
 <h4 id="5-2-持续控制："><a href="#5-2-持续控制：" class="headerlink" title="5.2 持续控制："></a>5.2 持续控制：</h4><p>​    <strong>拿到域控shell后主要是进行安插后门，便于后续控制。如果已经是域管权限，那么可以制造黄金、白银票据，进行导入。即使被发现改了域账号密码，也可以利用票据进行持续控制。黄金票据伪造的前提是获取krbtgt账号的密码hash,以此来加密得到TGT.</strong></p>
 <p><strong>话不多说，执行hashdump：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/29.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/29.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>得到了krbtgt的hash,然后获得域sid值：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/30.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/30.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>web机器创建票据之前，先清空一下票据，访问域控DC的C盘看一下：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/31.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/31.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>显示拒绝访问。。下面开始伪造黄金票据，并到当前会话：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/32.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/32.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 <p><strong>成功列出域控C盘的文件，也就是说只更改域管理员密码，同样可以进行后续控制，达到绕过AS认证免密得到TGT票据的目的：</strong></p>
-<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/33.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/hongri/33.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
 
       </section>
       <section class="extra">
